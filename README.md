@@ -158,7 +158,7 @@ Alert Context Quality                  Full CloudTrail JSON         Varies
 
 **EventBridge Rule Configuration:**
 
-![EventBridge Rule](screenshots/https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%202.jpg)
+![EventBridge Rule](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%202.jpg)
 
 *The EventBridge rule with event pattern configured to detect GetSecretValue API calls.*
 
@@ -173,7 +173,7 @@ Days/weeks to detect credential theft
 
 **Victim User Permissions (Before Attack):**
 
-![IAM User Before](screenshots/https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%206.jpg)
+![IAM User Before](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%206.jpg)
 
 *The victim-test-user with SecretsManagerReadWrite policy attached before the test.*
 
@@ -185,7 +185,7 @@ Continuous audit trail in S3
 
 **Victim User Permissions (Current State):**
 
-![IAM User Current](screenshots/https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%206.jpg)
+![IAM User Current](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%206.jpg)
 
 *Current permissions state showing the user still has the original policy (Lambda did not execute automatically due to EventBridge pattern matching issues).*
 
