@@ -15,7 +15,7 @@ Detection Layer:
 
 **CloudWatch Alarm Configuration:**
 
-![CloudWatch Alarm](screenshots/https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%201.jpg)
+![CloudWatch Alarm](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%201.jpg))
 
 *The alarm triggers when the secret is accessed one or more times within a 1-minute period.*
 
@@ -121,7 +121,7 @@ def lambda_handler(event, context):
 
 **Lambda Function in AWS Console:**
 
-![Lambda Function](screenshots/https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%205a.jpg)
+![Lambda Function](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%205a.jpg)
 
 *The Lambda kill-switch function deployed and ready to quarantine compromised users.*
 
@@ -227,7 +227,7 @@ json{
 
 **CloudTrail Event in AWS Console:**
 
-![CloudTrail Event](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%203%2B.jpg)
+![CloudTrail Event](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%203.jpg)
 
 *The CloudTrail event showing the victim-test-user accessing the honeytoken secret.*
 
@@ -296,7 +296,7 @@ SNS: Topic creation, email subscriptions, notification delivery
 
 **Email Notification Received:**
 
-![Email Alert](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%203.jpg)
+![Email Alert](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%204.jpg)
 
 *The automated email alert delivered within 2-3 minutes of secret access.*
 
