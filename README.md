@@ -16,7 +16,7 @@ Detection Layer:
 
 **CloudWatch Alarm Configuration:**
 
-![CloudWatch Alarm](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%201.jpg))
+![CloudWatch Alarm](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/screenshots/Screenshot%201.jpg)
 
 *The alarm triggers when the secret is accessed one or more times within a 1-minute period.*
 
@@ -65,6 +65,7 @@ I created a custom metric filter using JSON pattern matching:
   ($.requestParameters.secretId = "Production_Database_Credentials") }
 Configured CloudWatch Alarm with a threshold of ≥1 access in a 60-second window. The alarm triggers an SNS notification to the security team.
 
+
 Key Learnings:
 
 Metric-based detection provides reliable alerting even with service delays
@@ -85,6 +86,7 @@ json{
 }
 
 
+
 Troubleshooting Challenge:
 
 Initial implementation showed 0 invocations despite correct syntax
@@ -100,6 +102,7 @@ Parse CloudTrail event to extract attacker username
 Detach all IAM managed policies (removes permissions)
 Apply deny-all permissions boundary (prevents privilege re-escalation)
 Log all actions to CloudWatch for audit trail
+
 
 Code Snippet:
 
@@ -133,7 +136,9 @@ Lambda execution role requires IAMFullAccess (least privilege would use custom p
 Deny-all boundary prevents attackers from re-granting themselves permissions
 Function idempotency ensures repeated executions don't cause errors
 
+
 5. Testing & Validation
+
 Created a simulated attack scenario:
 
 Provisioned test IAM user "victim-test-user" with SecretsManagerReadWrite policy
@@ -142,18 +147,28 @@ Verified detection: Received email alert within 2 minutes 38 seconds
 Validated audit trail: CloudTrail captured username, IP address, timestamp, user agent
 
 Test Results:
+
 ✅ CloudWatch detection: 100% success rate
+
 ⚠️ EventBridge detection: Configured but required additional troubleshooting
+
 ✅ CloudTrail logging: Complete audit trail with all forensic details
+
 ⚠️ Lambda auto-quarantine: Code validated via manual testing; automatic trigger dependent on EventBridge resolution
 
 
- Results & Metrics
+Results & Metrics
+
 Detection Performance
+
 Metric                                 Value                     Industry Standard 
+
 Mean Time to Detect (MTTD)             2-3 minutes                24-48 hours (manual review)
+
 False Positive Rate                    0%                         5-15% (typical SIEM) 
+
 Detection Coverage                     24/7 continuous            Point-in-time scans 
+
 Alert Context Quality                  Full CloudTrail JSON         Varies
 
 **EventBridge Rule Configuration:**
@@ -234,12 +249,18 @@ json{
 *The CloudTrail event showing the victim-test-user accessing the honeytoken secret.*
 
 
-Lesson Learned: Production systems require redundant detection paths. When primary mechanism (EventBridge direct) failed, secondary mechanism (CloudWatch bridge) provided reliable triggering. This demonstrates defense-in-depth principle.
+Lesson Learned: 
+
+Production systems require redundant detection paths. When primary mechanism (EventBridge direct) failed, secondary mechanism (CloudWatch bridge) provided reliable triggering. This demonstrates defense-in-depth principle.
 Challenge 2: Lambda Execution Validation
 Problem: Without EventBridge automatically triggering Lambda, validating the quarantine code required alternative testing approaches.
+
+
 Solution:
+
 Used Lambda's built-in test feature with custom event payload mimicking CloudTrail structure:
-json{
+
+{
   "detail": {
     "userIdentity": {
       "type": "IAMUser",
@@ -250,36 +271,56 @@ json{
 
 
 This confirmed:
+
 Lambda has correct IAM permissions to modify user policies
+
 Code logic properly extracts usernames from events
+
 Policy detachment and boundary application APIs execute successfully
+
 CloudWatch logs capture all quarantine actions
 
 Lesson Learned: Automated response code must be testable independently of trigger mechanisms. In production, this would use AWS SAM or Serverless Framework for comprehensive unit and integration testing.
 
  Skills Demonstrated
+
+
 Cloud Security Architecture
 
 Multi-service integration (7 AWS services orchestrated)
+
 Defense in depth (multiple detection layers)
+
 Separation of concerns (detection vs. response)
+
 Scalable serverless design (Lambda auto-scales to threat volume)
+
 
 Security Operations (SOC)
 
+
 Honeytoken/honeypot deployment
+
 SIEM-style log aggregation and correlation
+
 Incident response automation (SOAR principles)
+
 Forensic evidence collection and preservation
+
 
 DevSecOps Practices
 
+
 Infrastructure as code mindset (reproducible architecture)
+
 Automated testing (Lambda function validation)
+
 Continuous monitoring (NIST compliance)
+
 CI/CD readiness (can be deployed via CloudFormation/Terraform)
 
 Technical Problem-Solving
+
 
 Systematic troubleshooting using AWS monitoring tools
 Reading and interpreting CloudWatch metrics
