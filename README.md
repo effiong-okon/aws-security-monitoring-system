@@ -47,7 +47,7 @@ Two parallel detection paths:
     Time to response: 30-90 seconds
     ↓
 Logs stored in S3 for forensic investigation
-[Architecture Diagram](AWS.drawio.png)
+[Architecture Diagram](https://github.com/IamEffizy/aws-security-monitoring-system/blob/main/AWS.drawio.png)
 
  Technical Implementation
 1. Honeytoken Strategy
