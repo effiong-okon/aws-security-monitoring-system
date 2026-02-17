@@ -61,7 +61,7 @@ Mimics real attacker behavior (credential theft)
 2. Detection Engine (CloudWatch)
 Created a custom metric filter using JSON pattern matching:
 { ($.eventName = "GetSecretValue") && 
-  ($.requestParameters.secretId = "Production_Database_Credentials") }
+($.requestParameters.secretId = "Production_Database_Credentials") }
 Configured CloudWatch Alarm with a threshold of ≥1 access in a 60-second window. The alarm triggers an SNS notification to the security team.
 
 Key Learnings:
