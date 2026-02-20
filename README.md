@@ -273,6 +273,6 @@ I'm happy to discuss:
 
 ---
 
-** If you found this project interesting, please star the repository!
+**If you found this project interesting, please star the repository!**
 
 *Last Updated: February 2026*
